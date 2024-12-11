@@ -8,11 +8,11 @@ namespace Data_BusinessLogic.DB.Interface
 {
     public interface IUsers
     {
-         int userID { get; }
-         string fio { get; set; }
-         string phone { get; set; }
-         string C_login { get; set; }
-         string C_password { get; set; }
-         int C_type { get; set; }
+        int UserID { get; }
+        string Fio { get; set; }
+        string Phone { get; set; }
+        string C_Login { get; set; }
+        string C_Password { get; set; }
+        int C_Type { get; set; }
     }
 }

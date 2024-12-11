@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data_BusinessLogic.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Data_BusinessLogic
 {
     /// <summary>
@@ -23,6 +25,7 @@ namespace Data_BusinessLogic
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
         }
     }
 }

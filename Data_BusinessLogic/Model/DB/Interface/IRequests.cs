@@ -8,17 +8,17 @@ namespace Data_BusinessLogic.Model.DB.Interface
 {
     public interface IRequests
     {
-         int requestID { get; }
-         System.DateTime startDate { get; set; }
-         Nullable<System.DateTime> completionDate { get; set; }
-         string typeOfRequest { get; set; }
-         string technicType { get; set; }
-         string technicModel { get; set; }
-         string problemDescription { get; set; }
-         string C_status { get; set; }
-         Nullable<int> sparePartID { get; set; }
-         int customerID { get; set; }
-         int masterID { get; set; }
-         int managerID { get; set; }
+        int RequestID { get; }
+        DateTime StartDate { get; set; }
+        DateTime? CompletionDate { get; set; }
+        string TypeOfRequest { get; set; }
+        string TechnicType { get; set; }
+        string TechnicModel { get; set; }
+        string ProblemDescription { get; set; }
+        string C_Status { get; set; }
+        int? SparePartID { get; set; }
+        int CustomerID { get; set; }
+        int MasterID { get; set; }
+        int ManagerID { get; set; }
     }
 }

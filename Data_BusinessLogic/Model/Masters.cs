@@ -9,21 +9,54 @@
 
 namespace Data_BusinessLogic
 {
+    using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
-    
-    public partial class Masters
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text.Json.Serialization;
+
+    public partial class Masters : IMasters, INotifyPropertyChanged
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Masters()
         {
             this.Requests = new HashSet<Requests>();
         }
-    
-        public int masterID { get; set; }
-        public int specialization { get; set; }
-        public int userID { get; set; }
-    
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int MasterID { get; private set; }
+
+        private int specialization;
+        [Required]
+        public int Specialization
+        {
+            get => specialization;
+            set
+            {
+                specialization = value;
+                OnPropertyChanged(nameof(Specialization));
+            }
+        }
+
+        private int userID;
+        [Required]
+        public int UserID
+        {
+            get => userID;
+            set
+            {
+                userID = value;
+                OnPropertyChanged(nameof(UserID));
+            }
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public virtual Specializations Specializations { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

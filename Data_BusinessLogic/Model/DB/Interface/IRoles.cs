@@ -8,7 +8,7 @@ namespace Data_BusinessLogic.Model.DB.Interface
 {
     public interface IRoles
     {
-         int roleID { get; }
-         string nameOfRole { get; set; }
+        int RoleID { get; }
+        string NameOfRole { get; set; }
     }
 }

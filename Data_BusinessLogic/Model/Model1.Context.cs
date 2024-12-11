@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data_BusinessLogic
+namespace Data_BusinessLogic.Model
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EquipmentRepairSystemEntities1 : DbContext
+    public partial class EquipmentRepairSystemEntities2 : DbContext
     {
-        public EquipmentRepairSystemEntities1()
-            : base("name=EquipmentRepairSystemEntities1")
+        public EquipmentRepairSystemEntities2()
+            : base("name=EquipmentRepairSystemEntities2")
         {
         }
     
@@ -32,7 +32,6 @@ namespace Data_BusinessLogic
         public virtual DbSet<Requests> Requests { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Specializations> Specializations { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }

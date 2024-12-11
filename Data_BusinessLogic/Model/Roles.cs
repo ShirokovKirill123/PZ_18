@@ -9,32 +9,44 @@
 
 namespace Data_BusinessLogic
 {
+    using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
-    
-    public partial class Users
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text.Json.Serialization;
+
+
+    public partial class Roles : IRoles, INotifyPropertyChanged
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public Roles()
         {
-            this.Customers = new HashSet<Customers>();
-            this.Managers = new HashSet<Managers>();
-            this.Masters = new HashSet<Masters>();
+            this.Users = new HashSet<Users>();
         }
-    
-        public int userID { get; set;}
-        public string fio { get; set; }
-        public string phone { get; set; }
-        public string C_login { get; set; }
-        public string C_password { get; set; }
-        public int C_type { get; set; }
-    
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int RoleID { get; private set; }
+
+        private string nameOfRole;
+        [Required]
+        [MaxLength(50)]
+        public string NameOfRole
+        {
+            get => nameOfRole;
+            set
+            {
+                nameOfRole = value;
+                OnPropertyChanged(nameof(NameOfRole));
+            }
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customers> Customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Managers> Managers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Masters> Masters { get; set; }
-        public virtual Roles Roles { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

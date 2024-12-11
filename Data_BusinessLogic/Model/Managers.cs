@@ -9,22 +9,43 @@
 
 namespace Data_BusinessLogic
 {
+    using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
-    
-    public partial class RepairParts
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text.Json.Serialization;
+
+    public partial class Managers : IManagers, INotifyPropertyChanged
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RepairParts()
+        public Managers()
         {
             this.Requests = new HashSet<Requests>();
         }
-    
-        public int sparePartID { get; set; }
-        public string partName { get; set; }
-        public decimal price { get; set; }
-        public int stockQuantity { get; set; }
-    
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int ManagerID { get; private set; }
+
+        private int userID;
+        [Required]
+        public int UserID
+        {
+            get => userID;
+            set
+            {
+                userID = value;
+                OnPropertyChanged(nameof(UserID));
+            }
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requests> Requests { get; set; }
     }

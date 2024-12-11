@@ -9,20 +9,43 @@
 
 namespace Data_BusinessLogic
 {
+    using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
-    
-    public partial class Specializations
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text.Json.Serialization;
+
+    public partial class Specializations : ISpecializations, INotifyPropertyChanged
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Specializations()
         {
             this.Masters = new HashSet<Masters>();
         }
-    
-        public int specializationID { get; set; }
-        public string nameOfSpecialization { get; set; }
-    
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int SpecializationID { get; private set; }
+
+        private string nameOfSpecialization;
+        [Required]
+        [MaxLength(100)]
+        public string NameOfSpecialization
+        {
+            get => nameOfSpecialization;
+            set
+            {
+                nameOfSpecialization = value;
+                OnPropertyChanged(nameof(NameOfSpecialization));
+            }
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Masters> Masters { get; set; }
     }

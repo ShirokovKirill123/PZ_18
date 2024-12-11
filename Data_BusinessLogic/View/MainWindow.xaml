@@ -3,9 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Data_BusinessLogic"
+        xmlns:local="clr-namespace:Data_BusinessLogic.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <local:BoolToStatusConverter x:Key="BoolToStatusConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -26,13 +31,6 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="3"
-               Text="Добро пожаловать в приложение!"
-               FontSize="26" FontWeight="Bold"
-               Foreground="White"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"/>
-
         <Frame Grid.Row="1" Grid.ColumnSpan="3"
            Margin="10">
             <Frame.Background>
@@ -44,18 +42,40 @@
             </Frame.Background>
         </Frame>
 
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="3"
+               Text="{Binding WelcomeMessage}" 
+               FontSize="26" FontWeight="Bold"
+               Foreground="White"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+
+        <ListBox Grid.Row="1" Grid.ColumnSpan="3"
+                 ItemsSource="{Binding Customers}"
+                 Margin="10" Background="LavenderBlush"
+                 BorderBrush="Thistle" BorderThickness="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding UserID}" FontSize="16" Foreground="DarkSlateBlue"/>
+                        <TextBlock Text="{Binding RegistrationDate}" FontSize="14" Foreground="SlateBlue"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
         <Button Grid.Row="2" Grid.Column="2"
-            Margin="100,0,0,0"
-            Background="SlateBlue"
-            Foreground="White"
-            FontWeight="Bold"
-            FontSize="15"
-            Content="Далее"
-            Width="100"
-            Height="30"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            BorderBrush="White"
-            BorderThickness="1"/>
+                Command="{Binding LoginCommand}"  
+                Margin="100,0,0,0"
+                Background="SlateBlue"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="15"
+                Content="Далее"
+                Width="100"
+                Height="30"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                BorderBrush="White"
+                BorderThickness="1"/>
     </Grid>
 </Window>

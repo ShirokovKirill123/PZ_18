@@ -8,8 +8,7 @@ namespace Data_BusinessLogic.Model.DB.Interface
 {
     public interface IManagers
     {
-         int managerID { get; }
-         int userID { get; set; }
-
+        int ManagerID { get; }
+        int UserID { get; set; }
     }
 }

@@ -9,21 +9,54 @@
 
 namespace Data_BusinessLogic
 {
+    using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
-    
-    public partial class Customers
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text.Json.Serialization;
+
+    public partial class Customers : ICustomers, INotifyPropertyChanged
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customers()
         {
             this.Requests = new HashSet<Requests>();
         }
-    
-        public int customerID { get; set; }
-        public System.DateTime registrationDate { get; set; }
-        public int userID { get; set; }
-    
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int CustomerID { get; private set; }
+
+        private DateTime registrationDate;
+        [Required]
+        public DateTime RegistrationDate
+        {
+            get => registrationDate;
+            set
+            {
+                registrationDate = value;
+                OnPropertyChanged(nameof(RegistrationDate));
+            }
+        }
+
+        private int userID;
+        [Required]
+        public int UserID
+        {
+            get => userID;
+            set
+            {
+                userID = value;
+                OnPropertyChanged(nameof(UserID));
+            }
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requests> Requests { get; set; }
