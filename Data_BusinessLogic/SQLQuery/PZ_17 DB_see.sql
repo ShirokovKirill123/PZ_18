@@ -1,9 +1,9 @@
-USE PZ17_117
-SELECT * FROM RepairParts
-SELECT * FROM Requests
-SELECT * FROM ReqStatusType
-SELECT * FROM HomeTechModel
-SELECT * FROM HomeTechType
-SELECT * FROM Users
-SELECT * FROM Comments
-SELECT * FROM UserType
+use EquipmentRepairSystem;
+
+Select * from Roles;
+Select * from Specializations;
+Select * from Users;
+Select * from Customers;
+Select * from Masters;
+Select * from RepairParts;
+Select * from Requests;

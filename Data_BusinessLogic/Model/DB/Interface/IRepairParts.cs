@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data_BusinessLogic.DB.Interface
+namespace Data_BusinessLogic.Model.DB.Interface
 {
     public interface IRepairParts
     {
-        int Id { get; }
-        string Name { get; set; }
-        int Price { get; set; }
+         int sparePartID { get; }
+         string partName { get; set; }
+         decimal price { get; set; }
+         int stockQuantity { get; set; }
     }
 }

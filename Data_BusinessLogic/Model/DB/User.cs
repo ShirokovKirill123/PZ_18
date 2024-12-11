@@ -10,7 +10,7 @@ using Data_BusinessLogic.DB.Interface;
 
 namespace Data_BusinessLogic.DB
 {
-    public class User : IUser, INotifyPropertyChanged
+    public class User : IUsers, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
