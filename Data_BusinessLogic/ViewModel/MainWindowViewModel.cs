@@ -19,8 +19,8 @@ namespace Data_BusinessLogic.ViewModel
             LoginCommand = new RelayCommand(ExecuteLogin);
         }
 
-        private ObservableCollection<Customers> _customers;
-        public ObservableCollection<Customers> Customers
+        private ObservableCollection<Data_BusinessLogic.Model.Customers> _customers;
+        public ObservableCollection<Data_BusinessLogic.Model.Customers> Customers
         {
             get => _customers;
             set
@@ -54,10 +54,10 @@ namespace Data_BusinessLogic.ViewModel
 
         public void LoadCustomers()
         {
-                Customers = new ObservableCollection<Customers>
+                Customers = new ObservableCollection<Data_BusinessLogic.Model.Customers>
             {
-                new Customers { RegistrationDate = DateTime.Now, UserID = 1 },
-                new Customers { RegistrationDate = DateTime.Now, UserID = 2 }
+                new Data_BusinessLogic.Model.Customers { registrationDate = DateTime.Now, userID = 1 },
+                new Data_BusinessLogic.Model.Customers { registrationDate = DateTime.Now, userID = 2 }
             };
         }
 

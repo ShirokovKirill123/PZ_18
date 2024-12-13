@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data_BusinessLogic
+namespace Data_BusinessLogic.Model
 {
+    using Data_BusinessLogic.DB.Interface;
     using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Data_BusinessLogic
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Specializations : ISpecializations, INotifyPropertyChanged
+    public partial class Specializations 
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Specializations()
@@ -24,27 +25,12 @@ namespace Data_BusinessLogic
             this.Masters = new HashSet<Masters>();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [Key]
+        public int specializationID { get; set; }
 
-        public int SpecializationID { get; private set; }
-
-        private string nameOfSpecialization;
         [Required]
         [MaxLength(100)]
-        public string NameOfSpecialization
-        {
-            get => nameOfSpecialization;
-            set
-            {
-                nameOfSpecialization = value;
-                OnPropertyChanged(nameof(NameOfSpecialization));
-            }
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public string nameOfSpecialization { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Masters> Masters { get; set; }

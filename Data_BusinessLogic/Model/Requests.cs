@@ -7,171 +7,58 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data_BusinessLogic
+namespace Data_BusinessLogic.Model
 {
+    using Data_BusinessLogic.DB.Interface;
     using Data_BusinessLogic.Model.DB.Interface;
     using System;
-    using System.Collections.Generic;   
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Requests : IRequests, INotifyPropertyChanged
+    public partial class Requests 
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        [Key]
+        public int requestID { get; set; }
 
-        public int RequestID { get; private set; }
-
-        private DateTime startDate;
         [Required]
         [JsonPropertyName("startDate")]
-        public DateTime StartDate
-        {
-            get => startDate;
-            set
-            {
-                startDate = value;
-                OnPropertyChanged(nameof(StartDate));
-            }
-        }
+        public System.DateTime startDate { get; set; }
 
-        private DateTime? completionDate;
         [JsonPropertyName("completionDate")]
-        public DateTime? CompletionDate
-        {
-            get => completionDate;
-            set
-            {
-                completionDate = value;
-                OnPropertyChanged(nameof(CompletionDate));
-            }
-        }
+        public Nullable<System.DateTime> completionDate { get; set; }
 
-        private string typeOfRequest;
         [Required]
-        [MaxLength(50)]
+        [MaxLength(100)]
         [JsonPropertyName("typeOfRequest")]
-        public string TypeOfRequest
-        {
-            get => typeOfRequest;
-            set
-            {
-                typeOfRequest = value;
-                OnPropertyChanged(nameof(TypeOfRequest));
-            }
-        }
+        public string typeOfRequest { get; set; }
 
-        private string technicType;
-        [Required]
         [MaxLength(100)]
         [JsonPropertyName("technicType")]
-        public string TechnicType
-        {
-            get => technicType;
-            set
-            {
-                technicType = value;
-                OnPropertyChanged(nameof(TechnicType));
-            }
-        }
+        public string technicType { get; set; }
 
-        private string technicModel;
-        [Required]
         [MaxLength(100)]
         [JsonPropertyName("technicModel")]
-        public string TechnicModel
-        {
-            get => technicModel;
-            set
-            {
-                technicModel = value;
-                OnPropertyChanged(nameof(TechnicModel));
-            }
-        }
+        public string technicModel { get; set; }
 
-        private string problemDescription;
-        [Required]
-        [MaxLength(2048)]
+        [MaxLength(500)]
         [JsonPropertyName("problemDescription")]
-        public string ProblemDescription
-        {
-            get => problemDescription;
-            set
-            {
-                problemDescription = value;
-                OnPropertyChanged(nameof(ProblemDescription));
-            }
-        }
+        public string problemDescription { get; set; }
 
-        private string cStatus;
-        [Required]
         [MaxLength(50)]
         [JsonPropertyName("status")]
-        public string C_Status
-        {
-            get => cStatus;
-            set
-            {
-                cStatus = value;
-                OnPropertyChanged(nameof(C_Status));
-            }
-        }
+        public string C_status { get; set; }
+        public Nullable<int> sparePartID { get; set; }
 
-        private int? sparePartID;
-        [JsonPropertyName("sparePartId")]
-        public int? SparePartID
-        {
-            get => sparePartID;
-            set
-            {
-                sparePartID = value;
-                OnPropertyChanged(nameof(SparePartID));
-            }
-        }
-
-        private int customerID;
         [Required]
-        [JsonPropertyName("customerId")]
-        public int CustomerID
-        {
-            get => customerID;
-            set
-            {
-                customerID = value;
-                OnPropertyChanged(nameof(CustomerID));
-            }
-        }
+        public int customerID { get; set; }
 
-        private int masterID;
         [Required]
-        [JsonPropertyName("masterId")]
-        public int MasterID
-        {
-            get => masterID;
-            set
-            {
-                masterID = value;
-                OnPropertyChanged(nameof(MasterID));
-            }
-        }
+        public int masterID { get; set; }
 
-        private int managerID;
         [Required]
-        [JsonPropertyName("managerId")]
-        public int ManagerID
-        {
-            get => managerID;
-            set
-            {
-                managerID = value;
-                OnPropertyChanged(nameof(ManagerID));
-            }
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public int managerID { get; set; }
 
         public virtual Customers Customers { get; set; }
         public virtual Managers Managers { get; set; }

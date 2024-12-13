@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data_BusinessLogic
+namespace Data_BusinessLogic.Model
 {
+    using Data_BusinessLogic.DB.Interface;
     using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Data_BusinessLogic
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class RepairParts : IRepairParts, INotifyPropertyChanged
+    public partial class RepairParts 
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RepairParts()
@@ -24,53 +25,18 @@ namespace Data_BusinessLogic
             this.Requests = new HashSet<Requests>();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [Key]
+        public int sparePartID { get; set; }
 
-        public int SparePartID { get; private set; }
-
-        private string partName;
         [Required]
-        [MaxLength(100)]
-        public string PartName
-        {
-            get => partName;
-            set
-            {
-                partName = value;
-                OnPropertyChanged(nameof(PartName));
-            }
-        }
+        [MaxLength(200)] 
+        public string partName { get; set; }
 
-        private decimal price;
         [Required]
-        [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive value")]
-        public decimal Price
-        {
-            get => price;
-            set
-            {
-                price = value;
-                OnPropertyChanged(nameof(Price));
-            }
-        }
+        public decimal price { get; set; }
 
-        private int stockQuantity;
         [Required]
-        [Range(0, int.MaxValue, ErrorMessage = "Stock quantity must be a non-negative value")]
-        public int StockQuantity
-        {
-            get => stockQuantity;
-            set
-            {
-                stockQuantity = value;
-                OnPropertyChanged(nameof(StockQuantity));
-            }
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public int stockQuantity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requests> Requests { get; set; }

@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data_BusinessLogic
+namespace Data_BusinessLogic.Model
 {
+    using Data_BusinessLogic.DB.Interface;
     using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Data_BusinessLogic
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Managers : IManagers, INotifyPropertyChanged
+    public partial class Managers 
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Managers()
@@ -24,28 +25,13 @@ namespace Data_BusinessLogic
             this.Requests = new HashSet<Requests>();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [Key]
+        public int managerID { get; set; }
 
-        public int ManagerID { get; private set; }
-
-        private int userID;
         [Required]
-        public int UserID
-        {
-            get => userID;
-            set
-            {
-                userID = value;
-                OnPropertyChanged(nameof(UserID));
-            }
-        }
+        public int userID { get; set; }
 
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public virtual Users Users { get; set; }
+        public virtual Users Users { get; private set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requests> Requests { get; set; }
     }

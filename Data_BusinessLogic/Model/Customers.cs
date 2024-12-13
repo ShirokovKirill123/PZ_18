@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data_BusinessLogic
+namespace Data_BusinessLogic.Model
 {
+    using Data_BusinessLogic.DB.Interface;
     using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace Data_BusinessLogic
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Customers : ICustomers, INotifyPropertyChanged
+
+    public partial class Customers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customers()
@@ -24,38 +26,14 @@ namespace Data_BusinessLogic
             this.Requests = new HashSet<Requests>();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [Key]
+        public int customerID { get; set; }
 
-        public int CustomerID { get; private set; }
-
-        private DateTime registrationDate;
         [Required]
-        public DateTime RegistrationDate
-        {
-            get => registrationDate;
-            set
-            {
-                registrationDate = value;
-                OnPropertyChanged(nameof(RegistrationDate));
-            }
-        }
+        public System.DateTime registrationDate { get; set; }
 
-        private int userID;
         [Required]
-        public int UserID
-        {
-            get => userID;
-            set
-            {
-                userID = value;
-                OnPropertyChanged(nameof(UserID));
-            }
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public int userID { get; set; }
 
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

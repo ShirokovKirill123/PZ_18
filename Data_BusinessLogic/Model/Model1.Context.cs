@@ -13,10 +13,10 @@ namespace Data_BusinessLogic.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EquipmentRepairSystemEntities2 : DbContext
+    public partial class EquipmentRepairSystemEntities3 : DbContext
     {
-        public EquipmentRepairSystemEntities2()
-            : base("name=EquipmentRepairSystemEntities2")
+        public EquipmentRepairSystemEntities3()
+            : base("name=EquipmentRepairSystemEntities3")
         {
         }
     

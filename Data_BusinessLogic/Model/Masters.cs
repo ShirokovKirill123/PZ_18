@@ -7,8 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data_BusinessLogic
+namespace Data_BusinessLogic.Model
 {
+    using Data_BusinessLogic.DB.Interface;
     using Data_BusinessLogic.Model.DB.Interface;
     using System;
     using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Data_BusinessLogic
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Masters : IMasters, INotifyPropertyChanged
+    public partial class Masters 
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Masters()
@@ -24,38 +25,14 @@ namespace Data_BusinessLogic
             this.Requests = new HashSet<Requests>();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [Key]
+        public int masterID { get; set; }
 
-        public int MasterID { get; private set; }
-
-        private int specialization;
         [Required]
-        public int Specialization
-        {
-            get => specialization;
-            set
-            {
-                specialization = value;
-                OnPropertyChanged(nameof(Specialization));
-            }
-        }
+        public int specialization { get; set; }
 
-        private int userID;
         [Required]
-        public int UserID
-        {
-            get => userID;
-            set
-            {
-                userID = value;
-                OnPropertyChanged(nameof(UserID));
-            }
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public int userID { get; set; }
 
         public virtual Specializations Specializations { get; set; }
         public virtual Users Users { get; set; }

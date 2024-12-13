@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Data_BusinessLogic
+namespace Data_BusinessLogic.Model
 {
     using Data_BusinessLogic.DB.Interface;
     using Data_BusinessLogic.Model.DB.Interface;
@@ -17,7 +17,7 @@ namespace Data_BusinessLogic
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Users : IUsers, INotifyPropertyChanged
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
@@ -27,78 +27,27 @@ namespace Data_BusinessLogic
             this.Masters = new HashSet<Masters>();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [Key]
+        public int userID { get; set; }
 
-        public int UserID { get; private set; }
-
-        private string fio;
         [Required]
-        [MaxLength(200)]
-        public string Fio
-        {
-            get => fio;
-            set
-            {
-                fio = value;
-                OnPropertyChanged(nameof(Fio));
-            }
-        }
+        [MaxLength(100)]
+        public string fio { get; set; }
 
-        private string phone;
         [Required]
         [MaxLength(20)]
-        public string Phone
-        {
-            get => phone;
-            set
-            {
-                phone = value;
-                OnPropertyChanged(nameof(Phone));
-            }
-        }
+        public string phone { get; set; }
 
-        private string cLogin;
         [Required]
         [MaxLength(50)]
-        public string C_Login
-        {
-            get => cLogin;
-            set
-            {
-                cLogin = value;
-                OnPropertyChanged(nameof(C_Login));
-            }
-        }
+        public string C_login { get; set; }
 
-        private string cPassword;
         [Required]
         [MaxLength(50)]
-        public string C_Password
-        {
-            get => cPassword;
-            set
-            {
-                cPassword = value;
-                OnPropertyChanged(nameof(C_Password));
-            }
-        }
+        public string C_password { get; set; }
 
-        private int cType;
         [Required]
-        public int C_Type
-        {
-            get => cType;
-            set
-            {
-                cType = value;
-                OnPropertyChanged(nameof(C_Type));
-            }
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public int C_type { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customers> Customers { get; set; }
@@ -109,3 +58,4 @@ namespace Data_BusinessLogic
         public virtual Roles Roles { get; set; }
     }
 }
+
