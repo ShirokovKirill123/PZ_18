@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data_BusinessLogic.Model
+namespace Data_BusinessLogic.ViewModel
 {
-    public class Validation
+    public class MasterViewModel
     {
-
     }
 }

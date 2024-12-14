@@ -17,7 +17,7 @@ namespace Data_BusinessLogic.Model
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Requests 
+    public partial class Requests : IRequests
     {
         [Key]
         public int requestID { get; set; }
@@ -49,6 +49,7 @@ namespace Data_BusinessLogic.Model
         [MaxLength(50)]
         [JsonPropertyName("status")]
         public string C_status { get; set; }
+
         public Nullable<int> sparePartID { get; set; }
 
         [Required]

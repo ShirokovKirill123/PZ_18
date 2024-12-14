@@ -66,7 +66,6 @@ namespace Data_BusinessLogic.ViewModel
 
         private bool ValidateCredentials(string login, string password)
         {
-            // Здесь можно добавить логику для проверки логина и пароля в базе данных.
             return login == "admin" && password == "admin"; 
         }
 

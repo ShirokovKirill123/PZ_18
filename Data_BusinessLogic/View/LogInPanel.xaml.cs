@@ -16,12 +16,12 @@ using Data_BusinessLogic.Model;
 using Data_BusinessLogic.View;
 using Data_BusinessLogic.ViewModel;
 
-namespace Data_BusinessLogic.UserControl
+namespace Data_BusinessLogic.View
 {
     /// <summary>
     /// Логика взаимодействия для LogInPanel.xaml
     /// </summary>
-    public partial class LogInPanel : Page
+    public partial class LogInPanel : Window
     {
         public LogInPanel()
         {
@@ -32,15 +32,15 @@ namespace Data_BusinessLogic.UserControl
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            string username = LoginTextBox.Text; 
-            string password = PasswordBox.Password;  
+            string username = LoginTextBox.Text;
+            string password = PasswordBox.Password;
 
-            using (var context = new EquipmentRepairSystemEntities3()) 
+            using (var context = new EquipmentRepairSystemEntities4())
             {
                 var user = context.Users.AsNoTracking().FirstOrDefault(u => u.C_login == username && u.C_password == password);
 
                 if (user != null)
-                {               
+                {
                     MainWindow mainWindow = new MainWindow();
                     Admin adminWindow = new Admin();
                     View.Manager managerWindow = new View.Manager();
@@ -75,6 +75,12 @@ namespace Data_BusinessLogic.UserControl
                     MessageBox.Show("Неверное имя пользователя или пароль");
                 }
             }
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.ShowDialog();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Data_BusinessLogic.Model.DB.Interface
 {
     public interface ISpecializations
     {
-        int SpecializationID { get; }
-        string NameOfSpecialization { get; set; }
+        int specializationID { get; set; }
+        string nameOfSpecialization { get; set; }
     }
 }

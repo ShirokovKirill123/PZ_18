@@ -17,7 +17,7 @@ namespace Data_BusinessLogic.Model
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Specializations 
+    public partial class Specializations : ISpecializations
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Specializations()
@@ -26,10 +26,12 @@ namespace Data_BusinessLogic.Model
         }
 
         [Key]
+        [JsonPropertyName("specializationId")]
         public int specializationID { get; set; }
 
         [Required]
         [MaxLength(100)]
+        [JsonPropertyName("nameOfSpecialization")]
         public string nameOfSpecialization { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

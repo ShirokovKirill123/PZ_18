@@ -18,7 +18,7 @@ namespace Data_BusinessLogic.Model
     using System.Text.Json.Serialization;
 
 
-    public partial class Customers
+    public partial class Customers : ICustomers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customers()
@@ -27,12 +27,15 @@ namespace Data_BusinessLogic.Model
         }
 
         [Key]
+        [JsonPropertyName("customerId")]
         public int customerID { get; set; }
 
         [Required]
+        [JsonPropertyName("registrationDate")]
         public System.DateTime registrationDate { get; set; }
 
         [Required]
+        [JsonPropertyName("userId")]
         public int userID { get; set; }
 
         public virtual Users Users { get; set; }

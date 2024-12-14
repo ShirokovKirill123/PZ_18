@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ac93b09c4b91459c8d7161d2a0f640f8" Name="Diagram1">
+      <Diagram DiagramId="54f5ff3f0dc4411894ef9f8fe2abf39b" Name="Diagram1">
         <EntityTypeShape EntityType="EquipmentRepairSystemModel.Customers" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EquipmentRepairSystemModel.Managers" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="EquipmentRepairSystemModel.Masters" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
@@ -12,16 +12,17 @@
         <EntityTypeShape EntityType="EquipmentRepairSystemModel.Requests" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="EquipmentRepairSystemModel.Roles" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="EquipmentRepairSystemModel.Specializations" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EquipmentRepairSystemModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EquipmentRepairSystemModel.Users" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Customers__userI__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Requests__custom__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Managers__userID__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Requests__manage__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Masters__special__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Masters__userID__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Requests__master__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Requests__spareP__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Users___type__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Customers__userI__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Requests__custom__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Managers__userID__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Requests__manage__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Masters__special__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Masters__userID__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Requests__master__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Requests__spareP__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentRepairSystemModel.FK__Users___type__4E88ABD4" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Manager" Height="450" Width="800">
     <Grid>
+       
         <TextBlock Text="Mananger" Height="20" HorizontalAlignment="Center"></TextBlock>
 
     </Grid>

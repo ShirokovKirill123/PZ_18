@@ -17,7 +17,7 @@ namespace Data_BusinessLogic.Model
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Masters 
+    public partial class Masters : IMasters
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Masters()
@@ -26,12 +26,15 @@ namespace Data_BusinessLogic.Model
         }
 
         [Key]
+        [JsonPropertyName("masterId")]
         public int masterID { get; set; }
 
         [Required]
+        [JsonPropertyName("specialization")]
         public int specialization { get; set; }
 
         [Required]
+        [JsonPropertyName("userId")]
         public int userID { get; set; }
 
         public virtual Specializations Specializations { get; set; }

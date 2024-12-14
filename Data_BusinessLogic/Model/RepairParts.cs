@@ -17,7 +17,7 @@ namespace Data_BusinessLogic.Model
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class RepairParts 
+    public partial class RepairParts : IRepairParts
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RepairParts()
@@ -26,16 +26,20 @@ namespace Data_BusinessLogic.Model
         }
 
         [Key]
+        [JsonPropertyName("sparePartId")]
         public int sparePartID { get; set; }
 
         [Required]
-        [MaxLength(200)] 
+        [MaxLength(200)]
+        [JsonPropertyName("partName")]
         public string partName { get; set; }
 
         [Required]
+        [JsonPropertyName("price")]
         public decimal price { get; set; }
 
         [Required]
+        [JsonPropertyName("stockQuantity")]
         public int stockQuantity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

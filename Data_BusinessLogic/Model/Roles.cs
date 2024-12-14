@@ -17,7 +17,7 @@ namespace Data_BusinessLogic.Model
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Roles 
+    public partial class Roles : IRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Roles()
@@ -26,10 +26,12 @@ namespace Data_BusinessLogic.Model
         }
 
         [Key]
+        [JsonPropertyName("roleId")]
         public int roleID { get; set; }
 
         [Required]
         [MaxLength(100)]
+        [JsonPropertyName("nameOfRole")]
         public string nameOfRole { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

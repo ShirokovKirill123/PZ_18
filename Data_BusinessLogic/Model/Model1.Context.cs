@@ -13,10 +13,10 @@ namespace Data_BusinessLogic.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EquipmentRepairSystemEntities3 : DbContext
+    public partial class EquipmentRepairSystemEntities4 : DbContext
     {
-        public EquipmentRepairSystemEntities3()
-            : base("name=EquipmentRepairSystemEntities3")
+        public EquipmentRepairSystemEntities4()
+            : base("name=EquipmentRepairSystemEntities4")
         {
         }
     
@@ -32,6 +32,7 @@ namespace Data_BusinessLogic.Model
         public virtual DbSet<Requests> Requests { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Specializations> Specializations { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }

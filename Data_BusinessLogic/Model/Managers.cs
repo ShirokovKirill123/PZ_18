@@ -17,7 +17,7 @@ namespace Data_BusinessLogic.Model
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Managers 
+    public partial class Managers : IManagers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Managers()
@@ -26,9 +26,11 @@ namespace Data_BusinessLogic.Model
         }
 
         [Key]
+        [JsonPropertyName("managerId")]
         public int managerID { get; set; }
 
         [Required]
+        [JsonPropertyName("userId")]
         public int userID { get; set; }
 
         public virtual Users Users { get; private set; }
@@ -36,3 +38,4 @@ namespace Data_BusinessLogic.Model
         public virtual ICollection<Requests> Requests { get; set; }
     }
 }
+

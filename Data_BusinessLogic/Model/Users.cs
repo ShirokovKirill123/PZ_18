@@ -17,7 +17,7 @@ namespace Data_BusinessLogic.Model
     using System.ComponentModel.DataAnnotations;
     using System.Text.Json.Serialization;
 
-    public partial class Users
+    public partial class Users : IUsers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
@@ -28,25 +28,31 @@ namespace Data_BusinessLogic.Model
         }
 
         [Key]
+        [JsonPropertyName("userId")]
         public int userID { get; set; }
 
         [Required]
         [MaxLength(100)]
+        [JsonPropertyName("fio")]
         public string fio { get; set; }
 
         [Required]
         [MaxLength(20)]
+        [JsonPropertyName("phone")]
         public string phone { get; set; }
 
         [Required]
         [MaxLength(50)]
+        [JsonPropertyName("login")]
         public string C_login { get; set; }
 
         [Required]
         [MaxLength(50)]
+        [JsonPropertyName("password")]
         public string C_password { get; set; }
 
         [Required]
+        [JsonPropertyName("type")]
         public int C_type { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -58,4 +64,3 @@ namespace Data_BusinessLogic.Model
         public virtual Roles Roles { get; set; }
     }
 }
-

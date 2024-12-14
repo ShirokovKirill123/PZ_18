@@ -8,8 +8,8 @@ namespace Data_BusinessLogic.Model.DB.Interface
 {
     public interface IMasters
     {
-        int MasterID { get; }
-        int Specialization { get; set; }
-        int UserID { get; set; }
+        int masterID { get; set; }
+        int specialization { get; set; }
+        int userID { get; set; }
     }
 }

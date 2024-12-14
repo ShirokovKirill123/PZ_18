@@ -23,5 +23,7 @@ namespace Data_BusinessLogic.View
         {
             InitializeComponent();
         }
+
+       
     }
 }
