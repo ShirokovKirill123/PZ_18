@@ -1,0 +1,38 @@
+﻿<Window x:Class="Data_BusinessLogic.View.ApplicationProcessingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Data_BusinessLogic.View"
+        mc:Ignorable="d"
+        Title="Обработка заявок" Height="450" Width="800">
+    <Grid Margin="10">
+        <Button Content="Назад" 
+                Width="100" 
+                Height="30"  
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="30" 
+                Click="BackButton_Click" 
+                Background="#4CAF50"
+                Foreground="White"/>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <TextBlock Text="Обработка заявки" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
+            <TextBlock Text="ID заявки" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox x:Name="RequestIdTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Дата окончания" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <DatePicker x:Name="CompletionDatePicker" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Менеджер" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <ComboBox x:Name="ManagerComboBox" DisplayMemberPath="fio" SelectedValuePath="managerID" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Мастер" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <ComboBox x:Name="MasterComboBox" DisplayMemberPath="fio" SelectedValuePath="masterID" Margin="0,0,0,10"/>
+
+            <Button Content="Обработать заявку" Height="40" Margin="0,30,0,10" Background="#4CAF50" Foreground="White" BorderBrush="Transparent" BorderThickness="1" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Click="ButtonApplicationProcessing_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

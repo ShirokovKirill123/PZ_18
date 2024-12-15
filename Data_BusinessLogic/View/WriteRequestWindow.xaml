@@ -1,0 +1,51 @@
+﻿<Window x:Class="Data_BusinessLogic.View.WriteRequestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Data_BusinessLogic.View"
+        mc:Ignorable="d"
+        Title="Оставить заявку" Height="450" Width="800">
+    <Grid Margin="10">
+        <!-- Кнопка Назад -->
+        <Button Content="Назад" 
+                Width="100" 
+                Height="30"  
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="30" 
+                Click="BackButton_Click" 
+                Background="#4CAF50"
+                Foreground="White"/>
+
+        <!-- Формы для ввода данных -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <TextBlock Text="Введите заявку" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
+            <TextBlock Text="ФИО клиента" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox x:Name="FioTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Тип техники" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox x:Name="TechnicTypeTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Модель" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox x:Name="TechnicModelTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Описание проблемы" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox x:Name="ProblemDescriptionTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Телефон" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox x:Name="PhoneNumberTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Подтвердите свой логин и пароль:" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+           
+            <TextBlock Text="Логин" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox x:Name="LoginTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Пароль" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox x:Name="PasswordNumberTextBox" Margin="0,0,0,10"/>
+
+            <Button Content="Оставить заявку" Height="40" Margin="0,30,0,10" Background="#4CAF50" Foreground="White" BorderBrush="Transparent" BorderThickness="1" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Click="SubmitRequestButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

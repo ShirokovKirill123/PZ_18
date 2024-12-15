@@ -42,7 +42,6 @@ namespace Data_BusinessLogic.View
 
             using (var context = new EquipmentRepairSystemEntities4())
             {
-                // Проверка уникальности логина
                 if (context.Users.Any(u => u.C_login == login))
                 {
                     MessageBox.Show("Пользователь с таким логином уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);

@@ -64,6 +64,6 @@ namespace Data_BusinessLogic.Model
         public virtual Customers Customers { get; set; }
         public virtual Managers Managers { get; set; }
         public virtual Masters Masters { get; set; }
-        public virtual RepairParts RepairParts { get; set; }
+        public virtual RepairParts RepairParts { get; set; }       
     }
 }

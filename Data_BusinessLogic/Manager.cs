@@ -7,20 +7,10 @@ using System.Windows.Controls;
 
 namespace Data_BusinessLogic
 {
-    internal class Manager
+    public static class Manager
     {
         public static Frame MainFrame { get; set; }
-        public static void Navigate(Page page)
-        {
-            MainFrame.Navigate(page);
-        }
-
-        public static void GoBack()
-        {
-            if (MainFrame.CanGoBack)
-            {
-                MainFrame.GoBack();
-            }
-        }
+        public static int? UserId { get; set; } 
+        public static int UserType { get; set; } 
     }
 }

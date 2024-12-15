@@ -37,7 +37,7 @@
                 <Button Content="Мастеры" Height="30" Margin="3,20" Click="Button_Masters_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="#4CAF50"/>
                 <Button Content="Менеджеры" Height="30" Margin="3,20" Click="Button_Managers_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="#4CAF50"/>
                 <Button Content="Детали для ремонта" Height="30" Margin="3,20" Click="Button_RepairParts_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold" Background="#4CAF50"/>
-                <Button Content="Запросы" Height="30" Margin="3,20" Click="Button_Requests_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold" Background="#4CAF50"/>
+                <Button Content="Заявки" Height="30" Margin="3,20" Click="Button_Requests_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold" Background="#4CAF50"/>
             </StackPanel>
         </StackPanel>
 
@@ -79,7 +79,9 @@
             <Button Content="Удалить" Click="ButtonDelete_Click" Margin="5,15,5,5" Background="Tomato" Height="30" FontFamily="Yu Gothic UI Semibold"/>
             <Button Content="Обновить" Click="ButtonUpdate_Click" Margin="5,15,5,5" Background="YellowGreen" Height="30" FontFamily="Yu Gothic UI Semibold"/>
             <Button Content="Оставить заявку" Click="Button_WriteARequest_Click" Margin="5,15,5,5" Background="Goldenrod" Height="30" FontFamily="Yu Gothic UI Semibold"/>
-            <Button Content="Назначить мастера" Click="ButtonAppointAMaster_Click" Margin="5,15,5,5" Background="BurlyWood" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+            <Button Content="Обработать заявки" Click="ButtonApplicationProcessing_Click" Margin="5,15,5,5" Background="BurlyWood" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+            <Button Content="Ремонт" Click="Repair_Click" Margin="5,15,5,5" Background="BurlyWood" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+            <Button Content="Экспортировать отчёт" Click="ButtonReport_Click" Margin="5,15,5,5" Background="SandyBrown" Height="30" FontFamily="Yu Gothic UI Semibold"/>
         </StackPanel>
     </Grid>
 </Window>

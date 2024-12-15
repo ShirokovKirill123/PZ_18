@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Data_BusinessLogic.Model;
 using Data_BusinessLogic.View;
 using Data_BusinessLogic.ViewModel;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Data_BusinessLogic.View
 {
@@ -53,6 +54,8 @@ namespace Data_BusinessLogic.View
                     }
                     else if (user.C_type == 2)//Клиент
                     {
+                        Data_BusinessLogic.Manager.UserId = user.userID; 
+                        Data_BusinessLogic.Manager.UserType = user.C_type;
                         clientWindow.Show();
                     }
                     else if (user.C_type == 3)//Мастер

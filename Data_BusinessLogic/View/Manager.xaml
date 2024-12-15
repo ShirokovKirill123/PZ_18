@@ -6,9 +6,80 @@
         xmlns:local="clr-namespace:Data_BusinessLogic.View"
         mc:Ignorable="d"
         Title="Manager" Height="450" Width="800">
-    <Grid>
-       
-        <TextBlock Text="Mananger" Height="20" HorizontalAlignment="Center"></TextBlock>
+    <Grid PreviewMouseDown="Grid_PreviewMouseDown" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="209"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="209"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+
+            <Button x:Name="MenuButton" Height="70" Click="MenuButton_Click" Width="68" HorizontalAlignment="Left" Margin="10,0,0,0">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <Image Source="\Images\меню.png" HorizontalAlignment="Left"/>
+            </Button>
+
+            <StackPanel  x:Name="SideMenu" Width="209" Orientation="Vertical" Margin="0,5,0,0" HorizontalAlignment="Left" Height="600"  Background="#99F5DEB3">
+                <Button Content="Роли" Height="30" Margin="3,20" Click="Button_Roles_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="#4CAF50"/>
+                <Button Content="Специализации" Height="30" Margin="3,20" Click="Button_Specializations_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="#4CAF50"/>
+                <Button Content="Пользователи" Height="30" Margin="3,20" Click="Button_Users_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="#4CAF50"/>
+                <Button Content="Покупатели" Height="30" Margin="3,20" Click="Button_Customers_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="#4CAF50"/>
+                <Button Content="Мастеры" Height="30" Margin="3,20" Click="Button_Masters_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="#4CAF50"/>
+                <Button Content="Менеджеры" Height="30" Margin="3,20" Click="Button_Managers_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold"  Background="#4CAF50"/>
+                <Button Content="Детали для ремонта" Height="30" Margin="3,20" Click="Button_RepairParts_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold" Background="#4CAF50"/>
+                <Button Content="Заявки" Height="30" Margin="3,20" Click="Button_Requests_Click" FontSize="12" FontFamily="Yu Gothic UI Semibold" Background="#4CAF50"/>
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" x:Name="DataGrid" AutoGenerateColumns="False"  ColumnWidth="*" IsReadOnly="False" Padding="0,0,0,0">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Style>
+                <Style TargetType="DataGrid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Items.Count, ElementName=DataGrid}" Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Items.Count, ElementName=DataGrid}" Value="1">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Style>
+        </DataGrid>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="3" Background="#4CAF50">
+            <TextBlock Text="Вы вошли как Менеджер" 
+        FontSize="16" 
+        FontWeight="Bold" 
+        Foreground="Black" 
+        VerticalAlignment="Center" 
+        HorizontalAlignment="Center"
+        Margin="55,0,0,0"/>
+        </Grid>
+        <StackPanel x:Name="StackPanel2" Grid.Column="2" Margin="0,80,10,0" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Width="159" Visibility="Hidden">
+            <TextBlock Text="ID" Margin="5" HorizontalAlignment="Center" FontFamily="Yu Gothic UI Semibold"/>
+            <TextBox x:Name="TextBoxID" Margin="5" Height="20" />
+
+            <Button Content="Добавить" Click="ButtonAdd_Click" Margin="5,15,5,5" Background="LightGreen" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+            <Button Content="Сохранить" Click="ButtonEdit_Click" Margin="5,15,5,5" Background="Khaki" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+            <Button Content="Удалить" Click="ButtonDelete_Click" Margin="5,15,5,5" Background="Tomato" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+            <Button Content="Обновить" Click="ButtonUpdate_Click" Margin="5,15,5,5" Background="YellowGreen" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+            <Button Content="Обработать заявки" Click="ButtonApplicationProcessing_Click" Margin="5,15,5,5" Background="BurlyWood" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+            <Button Content="Экспортировать отчёт" Click="ButtonReport_Click" Margin="5,15,5,5" Background="SandyBrown" Height="30" FontFamily="Yu Gothic UI Semibold"/>
+        </StackPanel>
     </Grid>
 </Window>

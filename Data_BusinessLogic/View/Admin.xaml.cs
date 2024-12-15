@@ -18,6 +18,8 @@ using System.Threading;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
 using System.Data.Entity; // Для Entity Framework 6
+using System.IO; 
+
 
 
 namespace Data_BusinessLogic.View
@@ -33,6 +35,7 @@ namespace Data_BusinessLogic.View
         {
             InitializeComponent();
         }
+
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             SideMenu.Visibility = SideMenu.Visibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
@@ -232,29 +235,30 @@ namespace Data_BusinessLogic.View
             {
                 DataGrid.ContextMenu = null;
 
-                var requestsList = context.Requests
-               .Include(r => r.Customers)
-               .Include(r => r.Managers)
-               .Include(r => r.Masters)
-               .Include(r => r.RepairParts)
-               .Select(r => new
-               {
-                   RequestID = r.requestID,
-                   StartDate = r.startDate,
-                   CompletionDate = r.completionDate,
-                   TechnicType = r.technicType,
-                   TechnicModel = r.technicModel,
-                   ProblemDescription = r.problemDescription,
-                   ClientFio = r.Customers != null && r.Customers.Users != null ? r.Customers.Users.fio : string.Empty,
-                   ManagerFio = r.Managers != null && r.Managers.Users != null ? r.Managers.Users.fio : string.Empty,
-                   MasterFio = r.Masters != null && r.Masters.Users != null ? r.Masters.Users.fio : string.Empty,
-                   PartName = r.RepairParts != null ? r.RepairParts.partName : string.Empty,
-                   TypeOfRequest = r.typeOfRequest,
-                   Status = r.C_status
-               })
-               .ToList();
+                var requestsList = from r in context.Requests
+                                   let clientFio = r.Customers != null && r.Customers.Users != null ? r.Customers.Users.fio : string.Empty
+                                   let managerFio = r.Managers != null && r.Managers.Users != null ? r.Managers.Users.fio : string.Empty
+                                   let masterFio = r.Masters != null && r.Masters.Users != null ? r.Masters.Users.fio : string.Empty
+                                   let partName = r.RepairParts != null ? r.RepairParts.partName : string.Empty
+                                   select new Model.DB.RequestDTO
+                                   {
+                                       RequestID = r.requestID,
+                                       StartDate = r.startDate,
+                                       CompletionDate = r.completionDate,
+                                       TechnicType = r.technicType,
+                                       TechnicModel = r.technicModel,
+                                       ProblemDescription = r.problemDescription,
+                                       ClientFio = clientFio,
+                                       ManagerFio = managerFio,
+                                       MasterFio = masterFio,
+                                       PartName = partName,
+                                       TypeOfRequest = r.typeOfRequest,
+                                       Status = r.C_status
+                                   };
 
-                DataGrid.ItemsSource = requestsList;
+                var result = requestsList.ToList();
+
+                DataGrid.ItemsSource = result;
                 currentTable = "Requests";
 
                 DataGrid.Columns.Clear();
@@ -271,6 +275,7 @@ namespace Data_BusinessLogic.View
                 DataGrid.Columns.Add(new DataGridTextColumn { Header = "Запчасть", Binding = new Binding("PartName") });
                 DataGrid.Columns.Add(new DataGridTextColumn { Header = "Тип заявки", Binding = new Binding("TypeOfRequest") });
                 DataGrid.Columns.Add(new DataGridTextColumn { Header = "Статус", Binding = new Binding("Status") });
+
                 StackPanelVisibility();
             }
         }
@@ -321,13 +326,13 @@ namespace Data_BusinessLogic.View
                         var newRequest = new Requests
                         {
                             startDate = DateTime.Now,
-                            completionDate = null,
+                            completionDate = DateTime.Now.AddDays(7),
                             typeOfRequest = "Ремонт",
                             technicType = "Тип",
                             technicModel = "Модель",
                             problemDescription = "описание",
                             C_status = "Новый",
-                            sparePartID = null,
+                            sparePartID = 1,
                             customerID = 1,
                             managerID = 1,
                             masterID = 1
@@ -690,12 +695,54 @@ namespace Data_BusinessLogic.View
 
         private void Button_WriteARequest_Click(object sender, RoutedEventArgs e)
         {
-
+            WriteRequestWindow writeRequestWindow = new WriteRequestWindow();
+            writeRequestWindow.ShowDialog();
         }
 
-        private void ButtonAppointAMaster_Click(object sender, RoutedEventArgs e)
+        private void ButtonApplicationProcessing_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationProcessingWindow applicationprocessingWindow = new ApplicationProcessingWindow();
+            applicationprocessingWindow.ShowDialog();
+        }        
 
+        private void Repair_Click(object sender, RoutedEventArgs e)
+        {
+            Repair repairWindow = new Repair();
+            repairWindow.ShowDialog();
+        }
+
+        private void ButtonReport_Click(object sender, RoutedEventArgs e)
+        {
+            var data = DataGrid.ItemsSource as IEnumerable<object>;
+            if (data == null || !data.Any())
+            {
+                MessageBox.Show("Нет данных для экспорта");
+                return;
+            }
+
+            // Реализация экспорта в CSV
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                Filter = "CSV файлы (*.csv)|*.csv",
+                FileName = "Отчёт.csv"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                using (var writer = new StreamWriter(saveFileDialog.FileName))
+                {
+                    var properties = data.First().GetType().GetProperties();
+                    writer.WriteLine(string.Join(";", properties.Select(p => p.Name)));
+
+                    foreach (var item in data)
+                    {
+                        var values = properties.Select(p => p.GetValue(item)?.ToString());
+                        writer.WriteLine(string.Join(";", values));
+                    }
+                }
+
+                MessageBox.Show("Отчёт успешно экспортирован");
+            }
         }
     }
 }
