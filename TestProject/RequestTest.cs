@@ -3,6 +3,7 @@ using System;
 using Data_BusinessLogic;
 using Data_BusinessLogic.DB;
 using Xunit;
+using Data_BusinessLogic.Model;
 
 
 namespace TestProject
@@ -10,46 +11,54 @@ namespace TestProject
     public class RequestTest
     {
         [Fact]
-        public void Request_Should_Trigger_PropertyChanged_When_CompletionDate_Changes()
+        public void Request_Should_Update_CompletionDate()
         {
             var request = new Requests();
-            bool propertyChangedTriggered = false;
-            request.PropertyChanged += (sender, args) =>
-            {
-                if (args.PropertyName == nameof(Requests.CompletionDate))
-                    propertyChangedTriggered = true;
-            };
+            var newCompletionDate = DateTime.Now;
 
-            request.CompletionDate = DateTime.Now;
+            request.completionDate = newCompletionDate;
 
-            Assert.True(propertyChangedTriggered);
+            Assert.Equal(newCompletionDate, request.completionDate);
         }
 
         [Fact]
         public void Request_Should_Set_Properties_Correctly()
         {
+            var startDate = DateTime.Now;
+            var problemDescription = "Device not working";
+            var typeOfRequest = "Repair";
+            var technicType = "Phone";
+            var technicModel = "iPhone 12";
+            var status = "Pending";
+            var sparePartID = 1;
+            var customerID = 2;
+            var masterID = 2;
+            var managerID = 1;
+
             var request = new Requests
             {
-                StartDate = DateTime.Now,
-                ProblemDescription = "Device not working",
-                TypeOfRequest = "Repair",
-                TechnicType = "Phone",
-                TechnicModel = "iPhone 12",
-                C_Status = "Pending",
-                SparePartID = 1,
-                CustomerID = 2,
-                MasterID = 2,
-                ManagerID = 1
+                startDate = startDate,
+                problemDescription = problemDescription,
+                typeOfRequest = typeOfRequest,
+                technicType = technicType,
+                technicModel = technicModel,
+                C_status = status,
+                sparePartID = sparePartID,
+                customerID = customerID,
+                masterID = masterID,
+                managerID = managerID
             };
 
-            Assert.Equal("Repair", request.TypeOfRequest);
-            Assert.Equal("Phone", request.TechnicType);
-            Assert.Equal("iPhone 12", request.TechnicModel);
-            Assert.Equal("Pending", request.C_Status);
-            Assert.Equal(1, request.SparePartID);
-            Assert.Equal(2, request.CustomerID);
-            Assert.Equal(2, request.MasterID);
-            Assert.Equal(1, request.ManagerID);
+            Assert.Equal(startDate, request.startDate);
+            Assert.Equal(problemDescription, request.problemDescription);
+            Assert.Equal(typeOfRequest, request.typeOfRequest);
+            Assert.Equal(technicType, request.technicType);
+            Assert.Equal(technicModel, request.technicModel);
+            Assert.Equal(status, request.C_status);
+            Assert.Equal(sparePartID, request.sparePartID);
+            Assert.Equal(customerID, request.customerID);
+            Assert.Equal(masterID, request.masterID);
+            Assert.Equal(managerID, request.managerID);
         }
     }
 }

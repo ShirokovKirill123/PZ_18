@@ -55,7 +55,7 @@ namespace Data_BusinessLogic.View
                     else if (user.C_type == 2)//Клиент
                     {
                         Data_BusinessLogic.Manager.UserId = user.userID; 
-                        Data_BusinessLogic.Manager.UserType = user.C_type;
+                        Data_BusinessLogic.Manager.UserType = "Client";
                         clientWindow.Show();
                     }
                     else if (user.C_type == 3)//Мастер

@@ -27,11 +27,11 @@
 
                 <TextBlock Text="Логин:" FontSize="16" FontWeight="Bold" Foreground="#333333" HorizontalAlignment="Center"/>
                 <Grid>
-                    <TextBox x:Name="LoginTextBox" Height="40" Margin="10,0,10,10" BorderBrush="#A8A8A8" BorderThickness="1" Padding="10" VerticalContentAlignment="Center" ToolTip="Введите логин" Text="alexandrov"/>
+                    <TextBox x:Name="LoginTextBox" Height="40" Margin="10,0,10,10" BorderBrush="#A8A8A8" BorderThickness="1" Padding="10" VerticalContentAlignment="Center" ToolTip="Введите логин" />
                 </Grid>
 
                 <TextBlock Text="Пароль:" FontSize="16" FontWeight="Bold" Foreground="#333333" HorizontalAlignment="Center"/>
-                <PasswordBox x:Name="PasswordBox" Height="40" Margin="0,0,0,10" BorderBrush="#A8A8A8" BorderThickness="1" Padding="10" VerticalContentAlignment="Center" ToolTip="Введите пароль" Width="256" Password="admin" Cursor=""/>
+                <PasswordBox x:Name="PasswordBox" Height="40" Margin="0,0,0,10" BorderBrush="#A8A8A8" BorderThickness="1" Padding="10" VerticalContentAlignment="Center" ToolTip="Введите пароль" Width="256" Cursor=""/>
 
                 <Button Content="Войти" Height="40" Width="275" Margin="0,30,0,10" Background="#4CAF50" Foreground="White" BorderBrush="Transparent" BorderThickness="1" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Click="LoginButton_Click"/>
                 <Button Content="Зарегистрироваться" Height="40" Width="275" Margin="0,30,0,10" Background="#4CAF50" Foreground="White" BorderBrush="Transparent" BorderThickness="1" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Click="RegisterButton_Click"/>

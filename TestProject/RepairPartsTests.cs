@@ -3,6 +3,7 @@ using System;
 using Data_BusinessLogic;
 using Data_BusinessLogic.DB;
 using Xunit;
+using Data_BusinessLogic.Model;
 
 
 namespace TestProject
@@ -10,34 +11,33 @@ namespace TestProject
     public class RepairPartsTests
     {
         [Fact]
-        public void RepairParts_Should_Trigger_PropertyChanged_When_Price_Changes()
+        public void RepairParts_Should_Update_Price()
         {
             var part = new RepairParts();
-            bool propertyChangedTriggered = false;
-            part.PropertyChanged += (sender, args) =>
-            {
-                if (args.PropertyName == nameof(RepairParts.Price))
-                    propertyChangedTriggered = true;
-            };
+            var newPrice = 200.5m;
 
-            part.Price = 100;
+            part.price = newPrice;
 
-            Assert.True(propertyChangedTriggered);
+            Assert.Equal(newPrice, part.price);
         }
 
         [Fact]
         public void RepairParts_Should_Set_Properties_Correctly()
         {
+            var partName = "Батарея";
+            var price = 99.99m;
+            var stockQuantity = 15;
+
             var part = new RepairParts
             {
-                PartName = "Screen",
-                Price = 150,
-                StockQuantity = 20
+                partName = partName,
+                price = price,
+                stockQuantity = stockQuantity
             };
 
-            Assert.Equal("Screen", part.PartName);
-            Assert.Equal(150, part.Price);
-            Assert.Equal(20, part.StockQuantity);
+            Assert.Equal(partName, part.partName);
+            Assert.Equal(price, part.price);
+            Assert.Equal(stockQuantity, part.stockQuantity);
         }
     }
 }

@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Data.Entity; // Для Entity Framework 6
 using System.IO;
 using static System.Collections.Specialized.BitVector32;
+using Data_BusinessLogic.ViewModel;
 
 
 namespace Data_BusinessLogic.View
@@ -34,6 +35,7 @@ namespace Data_BusinessLogic.View
         public Сlient()
         {
             InitializeComponent();
+            DataContext = new ClientViewModel();
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +63,7 @@ namespace Data_BusinessLogic.View
 
         private void Button_Requests_Click(object sender, RoutedEventArgs e)
         {
-            if (Data_BusinessLogic.Manager.UserType != 2 || Data_BusinessLogic.Manager.UserId == null)
+            if (Data_BusinessLogic.Manager.UserType != "Client" || Data_BusinessLogic.Manager.UserId == null)
             {
                 MessageBox.Show("Недостаточно прав для просмотра заявок", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -71,10 +73,21 @@ namespace Data_BusinessLogic.View
             {
                 DataGrid.ContextMenu = null;
 
-                int clientId = Data_BusinessLogic.Manager.UserId.Value; 
+
+                int userId = Data_BusinessLogic.Manager.UserId.Value;
+
+                var customer = context.Customers.FirstOrDefault(c => c.userID == userId);
+
+                if (customer == null)
+                {
+                    MessageBox.Show("У вас нет заявок", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+
+                int customerId = customer.customerID;
 
                 var requestsList = from r in context.Requests
-                                   where r.customerID == clientId
+                                   where r.customerID == customerId
                                    let clientFio = r.Customers != null && r.Customers.Users != null ? r.Customers.Users.fio : string.Empty
                                    let managerFio = r.Managers != null && r.Managers.Users != null ? r.Managers.Users.fio : string.Empty
                                    let masterFio = r.Masters != null && r.Masters.Users != null ? r.Masters.Users.fio : string.Empty
@@ -98,13 +111,7 @@ namespace Data_BusinessLogic.View
                 var result = requestsList.ToList();
 
                 DataGrid.ItemsSource = result;
-                currentTable = "Requests";
-
-                if (!result.Any())
-                {
-                    MessageBox.Show("У вас нет заявок", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
-                }
+                currentTable = "Requests";              
 
                 DataGrid.Columns.Clear();
 

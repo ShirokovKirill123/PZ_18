@@ -23,6 +23,21 @@ namespace Data_BusinessLogic.View
         public WriteRequestWindow()
         {
             InitializeComponent();
+
+            if (Data_BusinessLogic.Manager.UserId.HasValue)
+            {
+                using (var context = new EquipmentRepairSystemEntities4())
+                {
+                    var currentUser = context.Users.FirstOrDefault(u => u.userID == Data_BusinessLogic.Manager.UserId.Value);
+                    if (currentUser != null)
+                    {
+                        FioTextBox.Text = currentUser.fio;
+                        PhoneNumberTextBox.Text = currentUser.phone;
+                        LoginTextBox.Text = currentUser.C_login;
+                        PasswordNumberTextBox.Text = currentUser.C_password;
+                    }
+                }
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -38,61 +53,68 @@ namespace Data_BusinessLogic.View
                 string.IsNullOrWhiteSpace(ProblemDescriptionTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return; 
+                return;
             }
 
             using (var context = new EquipmentRepairSystemEntities4())
             {
                 var clientFio = FioTextBox.Text;
+                Users existingUser;
 
-                var existingUser = context.Users.FirstOrDefault(u => u.fio == clientFio);
-
-                if (existingUser == null)
+                if (Data_BusinessLogic.Manager.UserId.HasValue)
                 {
-                    var newUser = new Users
-                    {
-                        fio = clientFio,
-                        phone = PhoneNumberTextBox.Text,
-                        C_login = LoginTextBox.Text,
-                        C_password = PasswordNumberTextBox.Text,
-                        C_type = 2
-                    };
-                    context.Users.Add(newUser);
-                    context.SaveChanges();
-
-                    var newCustomer = new Customers
-                    {
-                        registrationDate = DateTime.Now,
-                        userID = newUser.userID 
-                    };
-                    context.Customers.Add(newCustomer);
-                    context.SaveChanges();
-
-                    existingUser = newUser;
+                    existingUser = context.Users.FirstOrDefault(u => u.userID == Data_BusinessLogic.Manager.UserId.Value);
                 }
                 else
                 {
-                    existingUser.fio = clientFio; 
-                    context.SaveChanges();
+                    existingUser = context.Users.FirstOrDefault(u => u.C_login == LoginTextBox.Text);
+
+                    if (existingUser == null)
+                    {
+                        var newUser = new Users
+                        {
+                            fio = clientFio,
+                            phone = PhoneNumberTextBox.Text,
+                            C_login = LoginTextBox.Text,
+                            C_password = PasswordNumberTextBox.Text,
+                            C_type = 2 
+                        };
+                        context.Users.Add(newUser);
+                        context.SaveChanges();
+                        existingUser = newUser;
+                    }
+                }
+
+                
+                if (existingUser != null)
+                {
+                    if (existingUser.C_login != LoginTextBox.Text || existingUser.C_password != PasswordNumberTextBox.Text)
+                    {
+                        MessageBox.Show("Введенные логин или пароль неверны", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не найден. Обратитесь в поддержку", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
 
                 var existingCustomer = context.Customers.FirstOrDefault(c => c.userID == existingUser.userID);
-
                 if (existingCustomer == null)
                 {
-                    var newCustomer = new Customers
+                    existingCustomer = new Customers
                     {
                         registrationDate = DateTime.Now,
                         userID = existingUser.userID
                     };
-                    context.Customers.Add(newCustomer);
+                    context.Customers.Add(existingCustomer);
                     context.SaveChanges();
-                    existingCustomer = newCustomer;
                 }
 
                 var newRequest = new Requests
                 {
-                    Customers = existingCustomer,
+                    customerID = existingCustomer.customerID,
                     startDate = DateTime.Now,
                     completionDate = DateTime.Now.AddDays(7),
                     typeOfRequest = "Ремонт",
@@ -101,7 +123,6 @@ namespace Data_BusinessLogic.View
                     problemDescription = ProblemDescriptionTextBox.Text,
                     C_status = "Новый",
                     sparePartID = 1,
-                    customerID = existingCustomer.customerID,
                     managerID = 1,
                     masterID = 1
                 };
@@ -110,7 +131,7 @@ namespace Data_BusinessLogic.View
                 context.SaveChanges();
             }
 
-            MessageBox.Show("Заявка успешно оставлена!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Заявка успешно составлена!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             this.Close();
         }
     }
